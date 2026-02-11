@@ -2,23 +2,23 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Project Clean Quest Presentation</title>
     
-    <!-- スライド表示用ライブラリ (Reveal.js) -->
+    <!-- スライド表示用ライブラリ -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/white.css">
     <!-- ドット絵フォント -->
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 
     <style>
-        /* === スライド全体のカスタムデザイン (明るいRPG風) === */
+        /* === デザイン設定 (iPad最適化 & 明るいRPG風) === */
         :root {
             --r-main-font: 'DotGothic16', sans-serif;
             --r-heading-font: 'DotGothic16', sans-serif;
             --r-main-color: #333;
             --r-heading-color: #0066cc;
-            --r-background-color: #f0f8ff; /* 空色 */
+            --r-background-color: #f0f8ff;
             --accent-color: #ff9900;
             --box-bg: #ffffff;
             --border-color: #333;
@@ -29,37 +29,40 @@
             background-size: 20px 20px;
         }
 
-        /* 枠付きボックスのデザイン */
+        /* 枠付きボックス */
         .rpg-box {
             background: var(--box-bg);
             border: 4px solid var(--border-color);
             border-radius: 15px;
-            padding: 30px;
+            padding: 20px;
             box-shadow: 8px 8px 0 rgba(0,0,0,0.1);
             text-align: left;
-            margin: 20px auto;
+            margin: 15px auto;
         }
 
-        .reveal h1, .reveal h2, .reveal h3 {
-            text-transform: none;
-            text-shadow: 2px 2px 0 rgba(255,255,255,0.8);
+        .reveal h1 { 
+            font-size: 2.2em; 
+            color: #0055aa; 
+            border-bottom: 4px dashed #0055aa; 
+            display: inline-block; 
+            padding-bottom: 10px; 
+            margin-bottom: 30px;
         }
-
-        .reveal h1 { font-size: 2.5em; color: #0055aa; border-bottom: 4px dashed #0055aa; display: inline-block; padding-bottom: 10px; }
-        .reveal h2 { color: #0077cc; }
+        .reveal h2 { color: #0077cc; font-size: 1.8em; }
         .highlight { color: #ff4444; font-weight: bold; }
         .accent { color: var(--accent-color); }
 
-        /* デモ埋め込み用のフレーム */
+        /* ★デモ埋め込み用フレーム (iPadサイズ調整) */
         .demo-frame {
             width: 100%;
-            height: 500px;
+            height: 550px;
             border: 4px solid #333;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            background: #fff;
         }
         
-        /* リストのデザイン */
+        /* リスト */
         .reveal ul { list-style-type: none; margin: 0; padding: 0; }
         .reveal li {
             padding: 10px 0;
@@ -68,8 +71,7 @@
         }
         .reveal li::before { content: "▶ "; color: var(--accent-color); }
 
-        /* 発表者情報 */
-        .presenter { margin-top: 50px; font-size: 0.8em; color: #666; }
+        .presenter { margin-top: 40px; font-size: 0.9em; color: #555; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -89,9 +91,9 @@
 
             <!-- スライド2: コンセプト -->
             <section>
-                <h2>01. CONCEPT</h2>
+                <h2>コンセプト</h2>
                 <div class="rpg-box">
-                    <h3>現状の課題 (Problem)</h3>
+                    <h3>現状の課題</h3>
                     <ul>
                         <li>掃除 ＝ 「面倒くさい義務」</li>
                         <li>サボりや雑な掃除が発生しやすい</li>
@@ -99,27 +101,25 @@
                     </ul>
                 </div>
                 <div class="fragment rpg-box" style="border-color: #ff9900; background: #fff9e6;">
-                    <h3 class="accent">解決策 (Solution)</h3>
+                    <h3 class="accent">解決策</h3>
                     <p><strong>「掃除 ＝ ミッション」と再定義。</strong></p>
                     <p>ゲーミフィケーションを取り入れ、<br>生徒が楽しみながら参加できるシステムを作る。</p>
                 </div>
             </section>
 
-            <!-- スライド3: デモ実演 (ここにアプリを埋め込む！) -->
+            <!-- スライド3: デモ実演 (ここにアプリを表示！) -->
             <section data-background-color="#222">
-                <h2 style="color:#fff">02. DEMO</h2>
-                <p style="color:#ccc">百聞は一見にしかず。実際の画面をご覧ください。</p>
+                <h2 style="color:#fff">デモ実演</h2>
+                <p style="color:#ccc; font-size: 0.8em;">百聞は一見にしかず。実際の画面をご覧ください。</p>
                 
-                <!-- ★ここにVercelのURLを入れると、スライドの中で動かせる！ -->
-                <!-- 例: src="https://project-clean-quest-xxxx.vercel.app" -->
-                <iframe class="demo-frame" src="index.html"></iframe>
+                <!-- ★ここを変更！ src="demo.html" を読み込む -->
+                <iframe class="demo-frame" src="demo.html"></iframe>
                 
-                <p style="font-size:0.6em; color:#888;">※QRコード読み取りは実機または別ウィンドウ推奨</p>
             </section>
 
-            <!-- スライド4: 仕組み1 チェックイン -->
+            <!-- スライド4: 仕組み1 -->
             <section>
-                <h2>03. SYSTEM - 1</h2>
+                <h2>具体的な仕組み ①</h2>
                 <h3>📱 QRチェックイン</h3>
                 <div class="rpg-box">
                     <ul>
@@ -128,26 +128,31 @@
                         <li>「いつ・誰が・どこで」始めたか自動記録</li>
                     </ul>
                 </div>
-                <p>👉 出席確認の手間ゼロ化</p>
+                <p style="margin-top: 20px;">👉 出席確認の手間をゼロにする</p>
             </section>
 
-            <!-- スライド5: 仕組み2 可視化 -->
+            <!-- スライド5: 仕組み2 -->
             <section>
-                <h2>03. SYSTEM - 2</h2>
+                <h2>具体的な仕組み ②</h2>
                 <h3>🗺️ 汚染エリアの浄化</h3>
                 <div class="rpg-box">
                     <p>掃除の進捗をマップ上で可視化</p>
-                    <br>
-                    <span style="color:red; font-size:1.5em;">■ 汚染 (掃除前)</span>
-                    <span> ➡ </span>
-                    <span style="color:green; font-size:1.5em;">■ 浄化 (完了)</span>
+                    <div style="display:flex; align-items:center; justify-content:center; gap:20px; margin-top:20px;">
+                        <div style="background:#fff0f0; border:2px solid red; padding:15px; border-radius:10px; color:red;">
+                            ■ 汚染 (掃除前)
+                        </div>
+                        <span style="font-size:2em;">➡</span>
+                        <div style="background:#f0fff0; border:2px solid green; padding:15px; border-radius:10px; color:green;">
+                            ■ 浄化 (完了)
+                        </div>
+                    </div>
                 </div>
                 <p>「学校が綺麗になっていく」達成感を可視化</p>
             </section>
 
-            <!-- スライド6: 仕組み3 ランキング -->
+            <!-- スライド6: 仕組み3 -->
             <section>
-                <h2>03. SYSTEM - 3</h2>
+                <h2>具体的な仕組み ③</h2>
                 <h3>🏆 クラス対抗ランキング</h3>
                 <div class="rpg-box">
                     <ul>
@@ -159,9 +164,9 @@
                 <p>連帯感を生み、掃除を「チーム戦」に変える</p>
             </section>
 
-            <!-- スライド7: メリット・SDGs -->
+            <!-- スライド7: 効果 -->
             <section>
-                <h2>04. IMPACT</h2>
+                <h2>導入効果・SDGs</h2>
                 <div class="rpg-box">
                     <h3>導入メリット</h3>
                     <ul>
@@ -170,7 +175,7 @@
                         <li><strong>社会:</strong> ゴミ分別を通じた環境意識の向上</li>
                     </ul>
                 </div>
-                <div class="rpg-box" style="font-size: 0.8em;">
+                <div class="rpg-box" style="font-size: 0.8em; background: #e6f7ff; border-color: #0077cc;">
                     <h3>🌏 SDGsへの貢献</h3>
                     <p>目標4 (教育) / 目標11 (まちづくり) / 目標12 (つくる責任)</p>
                 </div>
@@ -178,14 +183,16 @@
 
             <!-- スライド8: まとめ -->
             <section>
-                <h2>CONCLUSION</h2>
-                <h3 style="font-size: 1.5em; line-height: 1.5;">
-                    Project Clean Questは、<br>
-                    退屈な15分間を<br>
-                    <span class="highlight">「最高の冒険」</span>に変える<br>
-                    次世代の学校改革ツールである。
-                </h3>
-                <p style="margin-top: 50px;">ご清聴ありがとうございました。</p>
+                <h2>まとめ</h2>
+                <div class="rpg-box" style="text-align: center; border-width: 6px; padding: 40px;">
+                    <p style="font-size: 1.2em; line-height: 1.6;">
+                        Project Clean Questは、<br>
+                        退屈な15分間を<br>
+                        <span class="highlight" style="font-size: 1.5em;">「最高の冒険」</span>に変える<br>
+                        次世代の学校改革ツールである。
+                    </p>
+                </div>
+                <p style="margin-top: 50px; font-size: 0.8em;">ご清聴ありがとうございました。</p>
             </section>
 
         </div>
@@ -193,9 +200,17 @@
 
     <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
     <script>
+        // iPadサイズ (1024x768) に最適化
         Reveal.initialize({
+            width: 1024,
+            height: 768,
+            margin: 0.1,
+            minScale: 0.2,
+            maxScale: 2.0,
             hash: true,
-            transition: 'convex', // スライド切り替えアニメーション (none/fade/slide/convex/concave/zoom)
+            transition: 'convex', 
+            touch: true,
+            controls: true,
         });
     </script>
 </body>
