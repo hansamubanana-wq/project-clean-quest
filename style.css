@@ -1,0 +1,162 @@
+/* === RPG風の高級感（Retro High-End） === */
+:root {
+    --bg-color: #101020;      /* 濃紺の宇宙っぽい背景 */
+    --win-bg: #000033;        /* ウィンドウの背景色（FFっぽい青） */
+    --border-color: #ffffff;  /* 枠線は白 */
+    --accent: #ffd700;        /* 金色 */
+    --alert: #ff4444;         /* 赤 */
+    --text-color: #f0f0f0;
+}
+
+body {
+    margin: 0;
+    background-color: #000;
+    color: var(--text-color);
+    font-family: 'DotGothic16', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* 背景のアニメーション（宇宙船の中みたいなグリッド） */
+.bg-grid {
+    position: fixed; top: 0; left: 0; width: 200%; height: 200%;
+    background-image: 
+        linear-gradient(rgba(0, 50, 100, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 50, 100, 0.3) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: -2;
+    animation: moveGrid 20s linear infinite;
+}
+@keyframes moveGrid { 0% { transform: translate(0, 0); } 100% { transform: translate(-40px, -40px); } }
+
+/* CRTモニター風の走査線エフェクト（高級感の演出） */
+.crt-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.game-frame {
+    width: 100%; max-width: 400px; height: 750px;
+    background-color: rgba(0, 0, 20, 0.8);
+    border: 4px solid var(--border-color);
+    /* 外枠を二重線にしてRPGっぽく */
+    outline: 4px solid var(--win-bg); 
+    box-shadow: 0 0 30px rgba(0, 100, 255, 0.5);
+    display: flex; flex-direction: column;
+    position: relative;
+}
+
+/* === ヘッダー === */
+header {
+    background-color: var(--win-bg);
+    border-bottom: 4px double var(--border-color);
+    padding: 15px;
+}
+.school-badge { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 10px; color: #88aaff; }
+.online-status { color: #00ff00; text-shadow: 0 0 5px #00ff00; animation: blink 2s infinite; }
+
+.player-status { display: flex; gap: 15px; align-items: center; }
+.pixel-avatar {
+    width: 50px; height: 50px; background-color: #333;
+    border: 2px solid #fff;
+    /* 簡易ドット絵キャラクター（CSSグラデーションで描画） */
+    background-image: linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%);
+    background-size: 10px 10px;
+}
+.name { margin: 0; font-size: 1.2rem; font-weight: bold; }
+.class-id { margin: 0; font-size: 0.8rem; color: #aaa; }
+.sub-text { font-size: 0.7rem; }
+.hp-bar-container { display: flex; align-items: center; gap: 5px; font-size: 0.8rem; margin-top: 5px; }
+.hp-bar { width: 100px; height: 8px; background: #333; border: 1px solid #fff; }
+.hp-fill { width: 80%; height: 100%; background: linear-gradient(90deg, #ffcc00, #ff6600); }
+
+/* === 共通UIパーツ === */
+.screen { display: none; padding: 20px; flex: 1; overflow-y: auto; }
+.screen.active { display: block; animation: fadeIn 0.3s steps(5); }
+
+/* RPG風メッセージボックス */
+.rpg-box {
+    background-color: var(--win-bg);
+    border: 4px double var(--border-color);
+    padding: 15px; margin-bottom: 15px;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.5);
+}
+.mission-title { color: var(--accent); margin: 0 0 10px 0; border-bottom: 2px dashed #555; padding-bottom: 5px; }
+
+/* RPG風ボタン */
+.rpg-btn {
+    width: 100%; background-color: #000; color: #fff;
+    border: 2px solid #fff; padding: 15px; margin-bottom: 10px;
+    font-family: inherit; font-size: 1.1rem; cursor: pointer;
+    text-align: left; position: relative;
+    transition: 0.1s;
+}
+.rpg-btn:hover { background-color: #222; }
+.rpg-btn:active { transform: translate(2px, 2px); }
+.rpg-btn::before { content: "▶"; position: absolute; left: 10px; opacity: 0; transition: 0.1s; }
+.rpg-btn:hover::before { opacity: 1; left: 15px; } /* カーソルが合うと矢印が出る */
+.rpg-btn { padding-left: 30px; } /* 矢印スペース */
+
+.rpg-btn.primary { border-color: var(--accent); color: var(--accent); text-align: center; font-weight: bold; padding-left: 0; }
+.rpg-btn.primary::before { display: none; } /* センターボタンは矢印なし */
+.reward-btn { background-color: #440000; border-color: #ff4444; color: #ffcccc; animation: pulse 1s infinite; text-align: center; padding-left: 0; }
+.reward-btn::before { display: none; }
+
+/* === マップ (2号館3Fレイアウト) === */
+.map-container-rpg {
+    display: flex; flex-direction: column; gap: 5px;
+    margin-bottom: 20px; border: 2px solid #555; padding: 5px; background: #000;
+}
+.floor-row { display: grid; gap: 5px; }
+.rooms { grid-template-columns: 1fr 1fr 1fr 0.8fr; height: 80px; } /* 左から303,304,204,階段 */
+.map-cell {
+    border: 2px solid #fff; background: #222;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    position: relative;
+}
+.room-num { font-size: 1.2rem; font-weight: bold; }
+.room-label { font-size: 0.6rem; color: #aaa; }
+
+.target { background: #550000; border-color: #ff4444; cursor: pointer; }
+.alert-icon {
+    position: absolute; top: -10px; right: -10px;
+    background: #ff0000; color: #fff; width: 20px; height: 20px;
+    border-radius: 50%; font-size: 0.8rem; display: flex; align-items: center; justify-content: center;
+    animation: bounce 0.5s infinite alternate;
+}
+.stairs { background: repeating-linear-gradient(45deg, #333, #333 5px, #555 5px, #555 10px); }
+.stairs-icon { font-size: 1.5rem; line-height: 0.5; }
+
+.corridor { height: 40px; background: #111; border: 2px solid #555; display: flex; align-items: center; justify-content: center; }
+.corridor-text { letter-spacing: 5px; color: #555; font-size: 0.8rem; }
+
+/* === ランキング & マイページ === */
+.pixel-list { list-style: none; padding: 0; }
+.pixel-list li {
+    padding: 10px; border-bottom: 1px dashed #555; display: flex; justify-content: space-between; align-items: center;
+}
+.rank-badge { background: #fff; color: #000; padding: 2px 5px; font-size: 0.8rem; }
+.rank-1 .rank-badge { background: #ffd700; } /* 金 */
+.rank-1 .guild-name { color: #ffd700; }
+.detail-row { display: flex; justify-content: space-between; margin-bottom: 5px; }
+.pixel-hr { border: 0; border-top: 2px dashed #555; margin: 10px 0; }
+.gold-text { color: #ffd700; font-size: 1.2rem; }
+
+/* === ポップアップ === */
+.overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; z-index: 1000; }
+.popup-window { width: 80%; text-align: center; animation: popUp 0.3s steps(5); }
+.item-box { border: 2px dashed #fff; padding: 10px; margin: 15px 0; background: #002200; }
+.item-name { color: #ffd700; font-size: 1.2rem; margin: 5px 0; }
+.flash-text { animation: blink 0.5s infinite; color: #ffff00; }
+
+/* === アニメーション === */
+@keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-5px); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes popUp { from { transform: scale(0); } to { transform: scale(1); } }

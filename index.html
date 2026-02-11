@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Clean Quest</title>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+</head>
+<body>
+
+    <div class="bg-grid"></div>
+    <div class="crt-overlay"></div>
+
+    <div class="game-frame">
+        <header>
+            <div class="school-badge">
+                <span class="school-name">青稜中学校・高等学校</span>
+                <span class="online-status">● ONLINE</span>
+            </div>
+            <div class="player-status">
+                <div class="avatar-box">
+                    <div class="pixel-avatar"></div>
+                </div>
+                <div class="status-text">
+                    <p class="name">土蔵 創一</p>
+                    <p class="class-id">Class 303 <span class="sub-text">(3年3組 21番)</span></p>
+                    <div class="hp-bar-container">
+                        <span>HP</span>
+                        <div class="hp-bar"><div class="hp-fill"></div></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main id="screen-area">
+            
+            <div id="home-screen" class="screen active">
+                <div class="rpg-box message-window">
+                    <p class="typing-effect">▶ 本日のミッションを受信しました...</p>
+                    <h2 class="mission-title">⚔️ 303教室 浄化作戦</h2>
+                    <p>目標: 汚染された教室を掃除し、<br>平常な学習環境を取り戻せ！</p>
+                </div>
+
+                <div class="action-area">
+                    <button class="rpg-btn primary" onclick="startScan()">
+                        <span class="icon">📷</span> クエスト開始 (QR)
+                    </button>
+                </div>
+
+                <div class="menu-grid">
+                    <button class="rpg-btn" onclick="showScreen('map-screen')">🗺️ 2号館マップ</button>
+                    <button class="rpg-btn" onclick="showScreen('rank-screen')">🏆 ギルド順位</button>
+                    <button class="rpg-btn" onclick="showScreen('mypage-screen')">📜 ステータス</button>
+                </div>
+            </div>
+
+            <div id="map-screen" class="screen">
+                <div class="rpg-box">
+                    <h2>LOCATION: 2号館 3F</h2>
+                </div>
+                <div class="map-container-rpg">
+                    <div class="floor-row rooms">
+                        <div class="map-cell target" id="target-room" onclick="cleanRoom()">
+                            <span class="room-num">303</span>
+                            <span class="room-label">3年3組</span>
+                            <div class="alert-icon">!</div>
+                        </div>
+                        <div class="map-cell">
+                            <span class="room-num">304</span>
+                            <span class="room-label">3年4組</span>
+                        </div>
+                        <div class="map-cell">
+                            <span class="room-num">204</span>
+                            <span class="room-label">2年4組</span>
+                        </div>
+                        <div class="map-cell stairs">
+                            <span class="room-label">階段</span>
+                            <div class="stairs-icon">≡</div>
+                        </div>
+                    </div>
+                    <div class="floor-row corridor">
+                        <div class="corridor-text">HALLWAY (廊下)</div>
+                    </div>
+                </div>
+                <div class="rpg-box info-box">
+                    <p>※ <span style="color:#ff4444">赤色</span> のエリアをタップして浄化せよ</p>
+                </div>
+                <button class="rpg-btn back-btn" onclick="showScreen('home-screen')">戻る</button>
+            </div>
+
+            <div id="rank-screen" class="screen">
+                <div class="rpg-box">
+                    <h2>🏆 GUILD RANKING</h2>
+                    <ul class="pixel-list">
+                        <li class="rank-1">
+                            <span class="rank-badge">1st</span>
+                            <span class="guild-name">303 (3年3組)</span>
+                            <span class="xp-val">5240 XP</span>
+                        </li>
+                        <li class="rank-2">
+                            <span class="rank-badge">2nd</span>
+                            <span class="guild-name">301 (3年1組)</span>
+                            <span class="xp-val">4950 XP</span>
+                        </li>
+                        <li class="rank-3">
+                            <span class="rank-badge">3rd</span>
+                            <span class="guild-name">305 (3年5組)</span>
+                            <span class="xp-val">4800 XP</span>
+                        </li>
+                    </ul>
+                </div>
+                <button class="rpg-btn reward-btn" onclick="getReward()">
+                    🎁 報酬を受け取る
+                </button>
+                <button class="rpg-btn back-btn" onclick="showScreen('home-screen')">戻る</button>
+            </div>
+
+            <div id="mypage-screen" class="screen">
+                <div class="rpg-box status-window">
+                    <h2>📜 PLAYER STATUS</h2>
+                    <div class="detail-row"><span class="label">NAME:</span><span class="value">土蔵 創一</span></div>
+                    <div class="detail-row"><span class="label">CLASS:</span><span class="value">303 (3-3)</span></div>
+                    <div class="detail-row"><span class="label">NUMBER:</span><span class="value">No.21</span></div>
+                    <hr class="pixel-hr">
+                    <div class="detail-row"><span class="label">TOTAL XP:</span><span class="value gold-text">850 XP</span></div>
+                    <div class="detail-row"><span class="label">JOB:</span><span class="value">美化委員 Lv.3</span></div>
+                </div>
+                <button class="rpg-btn back-btn" onclick="showScreen('home-screen')">戻る</button>
+            </div>
+
+            <div id="scan-screen" class="screen">
+                <div class="scan-ui">
+                    <p>SCANNING QR CODE...</p>
+                    <div class="scan-frame">
+                        <video id="camera-preview" playsinline autoplay muted></video>
+                        <canvas id="qr-canvas" style="display:none;"></canvas>
+                        <div class="scan-bar"></div>
+                    </div>
+                    <p id="scan-status">カメラを起動中...</p>
+                    <button class="rpg-btn back-btn" onclick="stopScan()">キャンセル</button>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <div id="popup-overlay" class="overlay" onclick="closePopup()">
+        <div class="rpg-box popup-window">
+            <h3 class="flash-text">🎉 QUEST CLEARED!</h3>
+            <p>2月のギルド報酬を獲得しました！</p>
+            <div class="item-box">
+                <p class="item-name">🍦 17 Ice チケット</p>
+                <p class="item-desc">購買前の自販機で使用可能</p>
+            </div>
+            <button class="rpg-btn" onclick="closePopup()">閉じる</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
