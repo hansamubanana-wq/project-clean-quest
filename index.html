@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Project Clean Quest Presentation</title>
     
-    <!-- スライド表示用ライブラリ (Reveal.js) -->
+    <!-- スライド表示用ライブラリ -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/white.css">
     <!-- ドット絵フォント -->
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 
     <style>
-        /* === スライド全体のカスタムデザイン (明るいRPG風 for iPad) === */
+        /* === デザイン設定 (iPad最適化 & 明るいRPG風) === */
         :root {
             --r-main-font: 'DotGothic16', sans-serif;
             --r-heading-font: 'DotGothic16', sans-serif;
             --r-main-color: #333;
             --r-heading-color: #0066cc;
-            --r-background-color: #f0f8ff; /* 空色 */
+            --r-background-color: #f0f8ff;
             --accent-color: #ff9900;
             --box-bg: #ffffff;
             --border-color: #333;
@@ -29,20 +29,15 @@
             background-size: 20px 20px;
         }
 
-        /* 枠付きボックスのデザイン */
+        /* 枠付きボックス */
         .rpg-box {
             background: var(--box-bg);
             border: 4px solid var(--border-color);
             border-radius: 15px;
-            padding: 20px; /* iPad用に少し詰め気味に */
+            padding: 20px;
             box-shadow: 8px 8px 0 rgba(0,0,0,0.1);
             text-align: left;
             margin: 15px auto;
-        }
-
-        .reveal h1, .reveal h2, .reveal h3 {
-            text-transform: none;
-            text-shadow: 2px 2px 0 rgba(255,255,255,0.8);
         }
 
         .reveal h1 { 
@@ -57,17 +52,17 @@
         .highlight { color: #ff4444; font-weight: bold; }
         .accent { color: var(--accent-color); }
 
-        /* デモ埋め込み用のフレーム (iPadサイズ調整) */
+        /* デモ埋め込み用フレーム (iPadサイズ調整) */
         .demo-frame {
             width: 100%;
-            height: 550px; /* iPadで見やすい高さに */
+            height: 550px;
             border: 4px solid #333;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0,0,0,0.2);
             background: #fff;
         }
         
-        /* リストのデザイン */
+        /* リスト */
         .reveal ul { list-style-type: none; margin: 0; padding: 0; }
         .reveal li {
             padding: 10px 0;
@@ -76,7 +71,6 @@
         }
         .reveal li::before { content: "▶ "; color: var(--accent-color); }
 
-        /* 発表者情報 */
         .presenter { margin-top: 40px; font-size: 0.9em; color: #555; font-weight: bold; }
     </style>
 </head>
@@ -86,7 +80,7 @@
 
             <!-- スライド1: タイトル -->
             <section>
-                <h3>⚔️ PROJECT</h3>
+                <h3>⚔️ プロジェクト</h3>
                 <h1>CLEAN QUEST</h1>
                 <p>学校の掃除を「義務」から「冒険」へ</p>
                 <div class="presenter">
@@ -118,13 +112,12 @@
                 <h2 style="color:#fff">デモ実演</h2>
                 <p style="color:#ccc; font-size: 0.8em;">百聞は一見にしかず。実際の画面をご覧ください。</p>
                 
-                <!-- ★ここにVercelのURLを入れると、スライドの中で動かせる！ -->
-                <!-- ローカルなら "index.html" でOK -->
-                <iframe class="demo-frame" src="index.html"></iframe>
+                <!-- プレゼン資料(index.html)ではなく、アプリ本体(demo.html)を読み込む -->
+                <iframe class="demo-frame" src="demo.html"></iframe>
                 
             </section>
 
-            <!-- スライド4: 仕組み1 チェックイン -->
+            <!-- スライド4: 仕組み1 -->
             <section>
                 <h2>具体的な仕組み ①</h2>
                 <h3>📱 QRチェックイン</h3>
@@ -138,7 +131,7 @@
                 <p style="margin-top: 20px;">👉 出席確認の手間をゼロにする</p>
             </section>
 
-            <!-- スライド5: 仕組み2 可視化 -->
+            <!-- スライド5: 仕組み2 -->
             <section>
                 <h2>具体的な仕組み ②</h2>
                 <h3>🗺️ 汚染エリアの浄化</h3>
@@ -157,7 +150,7 @@
                 <p>「学校が綺麗になっていく」達成感を可視化</p>
             </section>
 
-            <!-- スライド6: 仕組み3 ランキング -->
+            <!-- スライド6: 仕組み3 -->
             <section>
                 <h2>具体的な仕組み ③</h2>
                 <h3>🏆 クラス対抗ランキング</h3>
@@ -165,13 +158,13 @@
                     <ul>
                         <li>出席率・美化度を <strong>XP (経験値)</strong> 化</li>
                         <li>クラス対抗で順位を競う</li>
-                        <li>上位クラスには月替わりの報酬を用意<br><small>（例：アイス無料券など）</small></li>
+                        <li>上位クラスには月替わりの報酬を用意<br><small>（例：セブンティーンアイス無料券など）</small></li>
                     </ul>
                 </div>
                 <p>連帯感を生み、掃除を「チーム戦」に変える</p>
             </section>
 
-            <!-- スライド7: メリット・SDGs -->
+            <!-- スライド7: 効果 -->
             <section>
                 <h2>導入効果・SDGs</h2>
                 <div class="rpg-box">
@@ -211,12 +204,11 @@
         Reveal.initialize({
             width: 1024,
             height: 768,
-            margin: 0.1, // 余白
+            margin: 0.1,
             minScale: 0.2,
             maxScale: 2.0,
             hash: true,
-            transition: 'convex', // スライド切り替えアニメーション
-            // iPadでのタッチ操作を有効化
+            transition: 'convex', 
             touch: true,
             controls: true,
         });
