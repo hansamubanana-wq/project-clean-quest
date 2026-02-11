@@ -1,217 +1,151 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Project Clean Quest Presentation</title>
-    
-    <!-- スライド表示用ライブラリ -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/white.css">
-    <!-- ドット絵フォント -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Clean Quest</title>
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
-
-    <style>
-        /* === デザイン設定 (iPad最適化 & 明るいRPG風) === */
-        :root {
-            --r-main-font: 'DotGothic16', sans-serif;
-            --r-heading-font: 'DotGothic16', sans-serif;
-            --r-main-color: #333;
-            --r-heading-color: #0066cc;
-            --r-background-color: #f0f8ff;
-            --accent-color: #ff9900;
-            --box-bg: #ffffff;
-            --border-color: #333;
-        }
-
-        .reveal {
-            background-image: radial-gradient(#d0e0f0 15%, transparent 16%);
-            background-size: 20px 20px;
-        }
-
-        /* 枠付きボックス */
-        .rpg-box {
-            background: var(--box-bg);
-            border: 4px solid var(--border-color);
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 8px 8px 0 rgba(0,0,0,0.1);
-            text-align: left;
-            margin: 15px auto;
-        }
-
-        .reveal h1 { 
-            font-size: 2.2em; 
-            color: #0055aa; 
-            border-bottom: 4px dashed #0055aa; 
-            display: inline-block; 
-            padding-bottom: 10px; 
-            margin-bottom: 30px;
-        }
-        .reveal h2 { color: #0077cc; font-size: 1.8em; }
-        .highlight { color: #ff4444; font-weight: bold; }
-        .accent { color: var(--accent-color); }
-
-        /* デモ埋め込み用フレーム (iPadサイズ調整) */
-        .demo-frame {
-            width: 100%;
-            height: 550px;
-            border: 4px solid #333;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
-            background: #fff;
-        }
-        
-        /* リスト */
-        .reveal ul { list-style-type: none; margin: 0; padding: 0; }
-        .reveal li {
-            padding: 10px 0;
-            border-bottom: 2px dashed #ccc;
-            font-size: 0.9em;
-        }
-        .reveal li::before { content: "▶ "; color: var(--accent-color); }
-
-        .presenter { margin-top: 40px; font-size: 0.9em; color: #555; font-weight: bold; }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
 </head>
 <body>
-    <div class="reveal">
-        <div class="slides">
 
-            <!-- スライド1: タイトル -->
-            <section>
-                <h3>⚔️ プロジェクト</h3>
-                <h1>CLEAN QUEST</h1>
-                <p>学校の掃除を「義務」から「冒険」へ</p>
-                <div class="presenter">
-                    <p>青稜中学校・高等学校</p>
-                    <p>3年3組 土蔵 創一</p>
+    <div class="bg-pattern"></div>
+
+    <div class="game-frame">
+        <header>
+            <div class="school-badge">
+                <span class="school-name">📍 青稜中学校・高等学校</span>
+                <span class="online-status">✨ ONLINE</span>
+            </div>
+            <div class="player-status">
+                <div class="avatar-box">
+                    <div class="pixel-avatar"></div>
                 </div>
-            </section>
-
-            <!-- スライド2: コンセプト -->
-            <section>
-                <h2>コンセプト</h2>
-                <div class="rpg-box">
-                    <h3>現状の課題</h3>
-                    <ul>
-                        <li>掃除 ＝ 「面倒くさい義務」</li>
-                        <li>サボりや雑な掃除が発生しやすい</li>
-                        <li>真面目にやっても評価されない</li>
-                    </ul>
-                </div>
-                <div class="fragment rpg-box" style="border-color: #ff9900; background: #fff9e6;">
-                    <h3 class="accent">解決策</h3>
-                    <p><strong>「掃除 ＝ ミッション」と再定義。</strong></p>
-                    <p>ゲーミフィケーションを取り入れ、<br>生徒が楽しみながら参加できるシステムを作る。</p>
-                </div>
-            </section>
-
-            <!-- スライド3: デモ実演 -->
-            <section data-background-color="#222">
-                <h2 style="color:#fff">デモ実演</h2>
-                <p style="color:#ccc; font-size: 0.8em;">百聞は一見にしかず。実際の画面をご覧ください。</p>
-                
-                <!-- プレゼン資料(index.html)ではなく、アプリ本体(demo.html)を読み込む -->
-                <iframe class="demo-frame" src="demo.html"></iframe>
-                
-            </section>
-
-            <!-- スライド4: 仕組み1 -->
-            <section>
-                <h2>具体的な仕組み ①</h2>
-                <h3>📱 QRチェックイン</h3>
-                <div class="rpg-box">
-                    <ul>
-                        <li>掃除用具入れやエリアにQRコードを設置</li>
-                        <li>iPad / スマホで読み取ると<strong>「クエスト受注」</strong></li>
-                        <li>「いつ・誰が・どこで」始めたか自動記録</li>
-                    </ul>
-                </div>
-                <p style="margin-top: 20px;">👉 出席確認の手間をゼロにする</p>
-            </section>
-
-            <!-- スライド5: 仕組み2 -->
-            <section>
-                <h2>具体的な仕組み ②</h2>
-                <h3>🗺️ 汚染エリアの浄化</h3>
-                <div class="rpg-box">
-                    <p>掃除の進捗をマップ上で可視化</p>
-                    <div style="display:flex; align-items:center; justify-content:center; gap:20px; margin-top:20px;">
-                        <div style="background:#fff0f0; border:2px solid red; padding:15px; border-radius:10px; color:red;">
-                            ■ 汚染 (掃除前)
-                        </div>
-                        <span style="font-size:2em;">➡</span>
-                        <div style="background:#f0fff0; border:2px solid green; padding:15px; border-radius:10px; color:green;">
-                            ■ 浄化 (完了)
-                        </div>
+                <div class="status-text">
+                    <p class="name">土蔵 創一</p>
+                    <p class="class-id">3年3組 21番</p>
+                    <div class="hp-bar-container">
+                        <span>XP</span>
+                        <div class="hp-bar"><div class="hp-fill"></div></div>
                     </div>
                 </div>
-                <p>「学校が綺麗になっていく」達成感を可視化</p>
-            </section>
+            </div>
+        </header>
 
-            <!-- スライド6: 仕組み3 -->
-            <section>
-                <h2>具体的な仕組み ③</h2>
-                <h3>🏆 クラス対抗ランキング</h3>
+        <main id="screen-area">
+            
+            <div id="home-screen" class="screen active">
+                <div class="rpg-box info-panel">
+                    <h2 class="mission-title">☀️ 本日のクエスト</h2>
+                    <p>303教室の美化レベルが低下しています。<br>仲間と協力して浄化してください！</p>
+                </div>
+
+                <div class="action-area">
+                    <button class="rpg-btn primary shadow-pop" onclick="startScan()">
+                        <span class="icon">📷</span> クエスト開始 (QR)
+                    </button>
+                </div>
+
+                <div class="menu-grid">
+                    <button class="rpg-btn white-btn" onclick="showScreen('map-screen')">🗺️ 2号館マップ</button>
+                    <button class="rpg-btn white-btn" onclick="showScreen('rank-screen')">🏆 クラス順位</button>
+                    <button class="rpg-btn white-btn" onclick="showScreen('mypage-screen')">📖 ステータス</button>
+                </div>
+            </div>
+
+            <div id="map-screen" class="screen">
                 <div class="rpg-box">
-                    <ul>
-                        <li>出席率・美化度を <strong>XP (経験値)</strong> 化</li>
-                        <li>クラス対抗で順位を競う</li>
-                        <li>上位クラスには月替わりの報酬を用意<br><small>（例：セブンティーンアイス無料券など）</small></li>
+                    <h2>📍 現在地: 2号館 3F</h2>
+                </div>
+                <div class="map-container-bright">
+                    <div class="floor-row rooms">
+                        <div class="map-cell target" id="target-room" onclick="cleanRoom()">
+                            <span class="room-num">303</span>
+                            <span class="status-tag">汚染中</span>
+                        </div>
+                        <div class="map-cell">304</div>
+                        <div class="map-cell">204</div>
+                        <div class="map-cell stairs">階段</div>
+                    </div>
+                    <div class="floor-row corridor">
+                        廊　下
+                    </div>
+                </div>
+                <p class="hint-text">※ 赤いエリアをタップして浄化！</p>
+                <button class="rpg-btn back-btn" onclick="showScreen('home-screen')">もどる</button>
+            </div>
+
+            <div id="rank-screen" class="screen">
+                <div class="rpg-box">
+                    <h2>🏆 2月のランキング</h2>
+                    <ul class="bright-list">
+                        <li class="rank-1">
+                            <span class="crown">🥇</span> 3年3組 <span class="xp-val">5240 XP</span>
+                        </li>
+                        <li>
+                            <span class="crown">🥈</span> 3年1組 <span class="xp-val">4950 XP</span>
+                        </li>
+                        <li>
+                            <span class="crown">🥉</span> 3年5組 <span class="xp-val">4800 XP</span>
+                        </li>
                     </ul>
                 </div>
-                <p>連帯感を生み、掃除を「チーム戦」に変える</p>
-            </section>
+                <button class="rpg-btn reward-btn shadow-pop" onclick="getReward()">
+                    🎁 報酬を受け取る
+                </button>
+                <button class="rpg-btn back-btn" onclick="showScreen('home-screen')">もどる</button>
+            </div>
 
-            <!-- スライド7: 効果 -->
-            <section>
-                <h2>導入効果・SDGs</h2>
-                <div class="rpg-box">
-                    <h3>導入メリット</h3>
-                    <ul>
-                        <li><strong>生徒:</strong> 「やらされる掃除」から「やりたくなるクエスト」へ</li>
-                        <li><strong>学校:</strong> 校内環境の劇的な改善</li>
-                        <li><strong>社会:</strong> ゴミ分別を通じた環境意識の向上</li>
-                    </ul>
-                </div>
-                <div class="rpg-box" style="font-size: 0.8em; background: #e6f7ff; border-color: #0077cc;">
-                    <h3>🌏 SDGsへの貢献</h3>
-                    <p>目標4 (教育) / 目標11 (まちづくり) / 目標12 (つくる責任)</p>
-                </div>
-            </section>
+            <div id="mypage-screen" class="screen">
+                <div class="rpg-box paper-style">
+                    <h2>📖 生徒手帳</h2>
+                    <div class="detail-row"><span class="label">氏名:</span><span class="value">土蔵 創一</span></div>
+                    <div class="detail-row"><span class="label">所属:</span><span class="value">3年3組 (No.21)</span></div>
+                    <hr class="dashed-line">
+                    <div class="detail-row"><span class="label">貢献度:</span><span class="value highlight">850 XP</span></div>
+                    </div>
+                <button class="rpg-btn back-btn" onclick="showScreen('home-screen')">もどる</button>
+            </div>
 
-            <!-- スライド8: まとめ -->
-            <section>
-                <h2>まとめ</h2>
-                <div class="rpg-box" style="text-align: center; border-width: 6px; padding: 40px;">
-                    <p style="font-size: 1.2em; line-height: 1.6;">
-                        Project Clean Questは、<br>
-                        退屈な15分間を<br>
-                        <span class="highlight" style="font-size: 1.5em;">「最高の冒険」</span>に変える<br>
-                        次世代の学校改革ツールである。
-                    </p>
+            <div id="scan-screen" class="screen">
+                <div class="scan-ui">
+                    <p>QRコードを読み取ってください</p>
+                    <div class="scan-frame-bright">
+                        <video id="camera-preview" playsinline autoplay muted></video>
+                        <canvas id="qr-canvas" style="display:none;"></canvas>
+                        <div class="focus-corner"></div>
+                    </div>
+                    <p id="scan-status">カメラ起動中...</p>
+                    <button class="rpg-btn back-btn" onclick="stopScan()">キャンセル</button>
                 </div>
-                <p style="margin-top: 50px; font-size: 0.8em;">ご清聴ありがとうございました。</p>
-            </section>
+            </div>
 
+        </main>
+    </div>
+
+    <div id="success-overlay" class="overlay" style="display:none;">
+        <div class="rpg-modal success-modal">
+            <div class="modal-icon">⚔️</div>
+            <h3>QUEST START!</h3>
+            <p>認証コード: <span class="code-text">303</span></p>
+            <p>掃除を開始してください！</p>
+            <button class="rpg-btn primary" onclick="closeSuccess()">OK!</button>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
-    <script>
-        // iPadサイズ (1024x768) に最適化
-        Reveal.initialize({
-            width: 1024,
-            height: 768,
-            margin: 0.1,
-            minScale: 0.2,
-            maxScale: 2.0,
-            hash: true,
-            transition: 'convex', 
-            touch: true,
-            controls: true,
-        });
-    </script>
+    <div id="popup-overlay" class="overlay" style="display:none;" onclick="closePopup()">
+        <div class="rpg-modal reward-modal">
+            <h3>🎉 MISSION CLEAR!</h3>
+            <div class="ticket-visual">
+                <p>17 Ice Ticket</p>
+                <div class="barcode">|||||||||||</div>
+            </div>
+            <p>購買前自販機で交換可能</p>
+            <button class="rpg-btn back-btn" onclick="closePopup()">とじる</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
