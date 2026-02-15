@@ -10,8 +10,8 @@ The primary language of the UI and all user-facing text is **Japanese**.
 
 ```
 project-clean-quest/
-├── index.html      # Main app — the gamified cleaning quest UI
-├── demo.html       # Presentation slides (Reveal.js) for pitching the project
+├── index.html      # Presentation slides (Reveal.js) — default landing page
+├── app.html        # Game app — the gamified cleaning quest UI
 ├── script.js       # App logic: screen navigation, QR scanning, game actions
 ├── style.css       # All styling — RPG-themed bright design with CSS custom properties
 └── CLAUDE.md       # This file
@@ -19,8 +19,8 @@ project-clean-quest/
 
 ### File Descriptions
 
-- **`index.html`** — Single-page app with multiple "screens" toggled via JS. Contains: home screen (quest board), map screen (floor plan), ranking screen, status/profile screen ("生徒手帳"), QR scan screen, and overlay modals for quest start and reward popups.
-- **`demo.html`** — A Reveal.js slide deck for presenting the project concept. Embeds `index.html` as a live demo via iframe. Optimized for iPad (1024x768).
+- **`index.html`** — A Reveal.js slide deck for presenting the project concept. This is the default landing page. Embeds `app.html` as a live demo via iframe. Optimized for iPad (1024x768).
+- **`app.html`** — Single-page app with multiple "screens" toggled via JS. Contains: home screen (quest board), map screen (floor plan), ranking screen, status/profile screen ("生徒手帳"), QR scan screen, and overlay modals for quest start and reward popups.
 - **`script.js`** — Vanilla JavaScript. Handles screen switching, camera-based QR code scanning (via jsQR library), quest state transitions, and UI updates. No framework or build step.
 - **`style.css`** — CSS using custom properties (`:root` variables). RPG-themed bright design with pixel-art font (DotGothic16), animated transitions, and responsive layout targeting mobile (max-width: 400px game frame).
 
@@ -29,7 +29,7 @@ project-clean-quest/
 - **Pure HTML/CSS/JavaScript** — No framework, no build tools, no package manager
 - **External CDN dependencies:**
   - [jsQR](https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js) — QR code scanning from camera feed
-  - [Reveal.js 4.5.0](https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/) — Presentation framework (demo.html only)
+  - [Reveal.js 4.5.0](https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/) — Presentation framework (index.html only)
   - [DotGothic16](https://fonts.googleapis.com/css2?family=DotGothic16) — Pixel-art style Google Font
   - [DiceBear Pixel Art](https://api.dicebear.com/7.x/pixel-art/svg) — Avatar generation (CSS background-image)
 
@@ -37,7 +37,7 @@ project-clean-quest/
 
 ### Running Locally
 
-No build step is needed. Open `index.html` directly in a browser, or serve via any static file server:
+No build step is needed. Open `index.html` directly in a browser to view the presentation, or `app.html` for the game app. Alternatively, serve via any static file server:
 
 ```bash
 # Python
@@ -111,4 +111,4 @@ The app uses a single-page pattern with CSS-based screen toggling:
 3. **No build system** — Do not introduce package.json, bundlers, or transpilers unless explicitly requested.
 4. **Camera API sensitivity** — Changes to the QR scanning flow should preserve the `getUserMedia` → `requestAnimationFrame` → `jsQR` pipeline and handle cleanup via `stopScan()`.
 5. **Mobile-first design** — The game frame is designed for phone-sized viewports (400px wide). Test layout changes at this width.
-6. **Presentation file** — `demo.html` embeds `index.html` via iframe. Changes to index.html are immediately reflected in the presentation demo.
+6. **Presentation file** — `index.html` (presentation) embeds `app.html` (game) via iframe. Changes to `app.html` are immediately reflected in the presentation demo.
