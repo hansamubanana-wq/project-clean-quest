@@ -57,19 +57,6 @@
         .highlight { color: #ff4444; font-weight: bold; }
         .accent { color: var(--accent-color); }
 
-        /* デモ埋め込み用のフレーム (全画面表示) */
-        .demo-frame {
-            width: 1024px;
-            height: 768px;
-            border: none;
-            border-radius: 0;
-            background: #fff;
-        }
-        /* デモスライドを全画面に */
-        .demo-slide {
-            padding: 0 !important;
-        }
-        
         /* リストのデザイン */
         .reveal ul { list-style-type: none; margin: 0; padding: 0; }
         .reveal li {
@@ -116,11 +103,8 @@
                 </div>
             </section>
 
-            <!-- スライド3: デモ実演 (全画面) -->
-            <section class="demo-slide" data-background-color="#222">
-                <!-- ★ここにVercelのURLを入れると、スライドの中で動かせる！ -->
-                <!-- ローカルなら "app.html" でOK -->
-                <iframe class="demo-frame" src="app.html"></iframe>
+            <!-- スライド3: デモ実演 (Reveal.js背景iframe機能で全画面表示) -->
+            <section data-background-iframe="app.html" data-background-interactive>
             </section>
 
             <!-- スライド4: 仕組み1 チェックイン -->
