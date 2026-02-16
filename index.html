@@ -57,14 +57,24 @@
         .highlight { color: #ff4444; font-weight: bold; }
         .accent { color: var(--accent-color); }
 
-        /* デモ埋め込み用のフレーム (iPadサイズ調整) */
+        /* デモ埋め込み用のフレーム (全画面表示) */
         .demo-frame {
             width: 100%;
-            height: 550px; /* iPadで見やすい高さに */
-            border: 4px solid #333;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            height: 100%;
+            border: none;
+            border-radius: 0;
             background: #fff;
+        }
+        /* デモスライドを全画面に */
+        .demo-slide {
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .demo-slide iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
         }
         
         /* リストのデザイン */
@@ -113,15 +123,11 @@
                 </div>
             </section>
 
-            <!-- スライド3: デモ実演 -->
-            <section data-background-color="#222">
-                <h2 style="color:#fff">デモ実演</h2>
-                <p style="color:#ccc; font-size: 0.8em;">百聞は一見にしかず。実際の画面をご覧ください。</p>
-                
+            <!-- スライド3: デモ実演 (全画面) -->
+            <section class="demo-slide" data-background-color="#222">
                 <!-- ★ここにVercelのURLを入れると、スライドの中で動かせる！ -->
                 <!-- ローカルなら "app.html" でOK -->
                 <iframe class="demo-frame" src="app.html"></iframe>
-                
             </section>
 
             <!-- スライド4: 仕組み1 チェックイン -->
